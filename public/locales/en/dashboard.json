@@ -1,0 +1,784 @@
+{
+  "common": {
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "close": "Close"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "users": "Users",
+    "datasets": "Datasets",
+    "questions": "Questions",
+    "geography": "Geography",
+    "games": "Games",
+    "templates": "Game Templates",
+    "analytics": "Analytics",
+    "logs": "Logs",
+    "pods": "Pods",
+    "reports": "Reports",
+    "avatars": "Avatars",
+    "settings": "Settings",
+    "apiExplorer": "API Explorer"
+  },
+  "sections": {
+    "management": "Management",
+    "content": "Content",
+    "system": "System"
+  },
+  "login": {
+    "title": "Culturae Admin",
+    "subtitle": "Sign in to the administration console",
+    "identifier": "Email",
+    "password": "Password",
+    "submit": "Sign in",
+    "loggingIn": "Signing in…",
+    "error": "Invalid credentials",
+    "back": "Back",
+    "continuingAs": "Continuing as"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Platform overview",
+    "stats": {
+      "users": "Users",
+      "activeGames": "Active games",
+      "questions": "Questions",
+      "pendingReports": "Pending reports"
+    },
+    "chart": {
+      "title": "Game activity"
+    },
+    "summary": {
+      "title": "Summary",
+      "total": "Total games",
+      "completed": "Completed",
+      "abandoned": "Abandoned",
+      "popularMode": "Popular mode"
+    }
+  },
+  "search": {
+    "placeholder": "Search…",
+    "noResults": "No results"
+  },
+  "settings": {
+    "save": "Save",
+    "revert": "Revert",
+    "unsavedChanges": "Unsaved changes",
+    "min": "min",
+    "sec": "sec",
+    "days": "days",
+    "tabs": {
+      "auth": "Authentication",
+      "game": "Game",
+      "xp": "XP & Ranks",
+      "elo": "ELO",
+      "system": "System",
+      "websocket": "WebSocket",
+      "avatar": "Avatar",
+      "theme": "Theme",
+      "preferences": "Preferences",
+      "countdown": "Countdown",
+      "ratelimit": "Rate Limit",
+      "maintenance": "Maintenance",
+      "version": "Version"
+    },
+    "auth": {
+      "tokens": "Tokens",
+      "security": "Security",
+      "accessTokenTTL": "Access token lifetime",
+      "accessTokenTTLDes": "Duration before the access token expires",
+      "refreshTokenTTL": "Refresh token lifetime",
+      "refreshTokenTTLDes": "Duration before the refresh token expires",
+      "sessionTTL": "Session lifetime",
+      "sessionTTLDes": "Duration before a session expires",
+      "maxConcurrentSessions": "Max concurrent sessions",
+      "maxConcurrentSessionsDes": "0 = unlimited",
+      "failedLoginAttempts": "Failed login attempts",
+      "failedLoginAttemptsDes": "Number of attempts before account lockout",
+      "loginLockout": "Lockout duration",
+      "loginLockoutDes": "Duration of account lockout after too many failed attempts"
+    },
+    "game": {
+      "ttl": "Lifetime",
+      "countdown": "Countdown",
+      "activeTTL": "Active game lifetime",
+      "activeTTLDes": "Time before an active game expires",
+      "finishedTTL": "Finished game lifetime",
+      "finishedTTLDes": "Time before a finished game is removed from cache",
+      "preGameCountdown": "Pre-game countdown",
+      "preGameCountdownDes": "Countdown shown before the game starts",
+      "reconnectGrace": "Reconnect grace period",
+      "reconnectGraceDes": "Time allowed for a player to reconnect after disconnecting"
+    },
+    "xp": {
+      "formula": "Formula",
+      "multipliers": "Multipliers",
+      "ranks": "Ranks",
+      "baseXP": "Base XP",
+      "baseXPDes": "XP required to reach level 1",
+      "growthRate": "Growth rate",
+      "growthRateDes": "Exponential multiplier for each level",
+      "winnerBonus": "Winner bonus",
+      "winnerBonusDes": "Bonus XP awarded to the winner",
+      "soloMultiplier": "Solo multiplier",
+      "onevoneMultiplier": "1v1 multiplier",
+      "multiMultiplier": "Multiplayer multiplier",
+      "rankName": "Rank name",
+      "rankMinLevel": "Min. level",
+      "addRank": "Add rank"
+    },
+    "elo": {
+      "kFactor": "K-Factor",
+      "rating": "Rating bounds",
+      "kFactorLow": "K-Factor (new players)",
+      "kFactorLowDes": "Applied when a player has fewer games than the threshold",
+      "kFactorHigh": "K-Factor (experienced players)",
+      "kFactorHighDes": "Applied when a player exceeds the threshold",
+      "kFactorThreshold": "Threshold",
+      "kFactorThresholdDes": "Number of games separating new from experienced players",
+      "games": "games",
+      "minRating": "Minimum rating",
+      "maxRating": "Maximum rating"
+    },
+    "system": {
+      "cache": "Cache",
+      "delays": "Delays",
+      "analytics": "Analytics",
+      "cron": "Scheduled tasks",
+      "enabled": "Enabled",
+      "userCacheTTL": "User cache lifetime",
+      "userCacheTTLDes": "Duration before cached user data is refreshed",
+      "cleanupInterval": "Cleanup interval",
+      "cleanupIntervalDes": "How often internal cleanup runs",
+      "offlineDelay": "Offline detection delay",
+      "offlineDelayDes": "Delay before a player is marked as offline",
+      "gameLeaveDelay": "Game leave delay",
+      "gameLeaveDelayDes": "Grace period before a player is removed from a game",
+      "analyticsActiveDays": "Active users window",
+      "analyticsActiveDaysDes": "Days used to compute active user count",
+      "analyticsArchiveDays": "Analytics archive window",
+      "analyticsArchiveDaysDes": "Days of analytics data to retain",
+      "datasetCheck": "Dataset update check",
+      "versionCheck": "Version check",
+      "sessionCleanup": "Session cleanup",
+      "gameCleanup": "Game cleanup"
+    },
+    "ws": {
+      "connection": "Connection",
+      "origins": "Allowed origins",
+      "rateLimit": "Rate limiting",
+      "writeWait": "Write wait",
+      "writeWaitDes": "Timeout for writing a message to the client",
+      "pongWait": "Pong wait",
+      "pongWaitDes": "Timeout for receiving a pong response",
+      "maxMessageSize": "Max message size",
+      "maxMessageSizeDes": "Maximum size of an incoming WebSocket message",
+      "reconnectGrace": "Reconnect grace period",
+      "reconnectGraceDes": "Time to hold a session open for reconnection",
+      "allowedOrigins": "Allowed origins",
+      "allowedOriginsDes": "One origin per line. Leave empty to allow all.",
+      "messageRateLimit": "Message rate limit",
+      "messageRateLimitDes": "Max messages per window. 0 = disabled.",
+      "messageRateWindow": "Rate window",
+      "messageRateWindowDes": "Time window for rate limiting"
+    },
+    "avatar": {
+      "upload": "Upload",
+      "maxFileSize": "Max file size",
+      "maxFileSizeDes": "Maximum size of an uploaded avatar",
+      "allowedMimeTypes": "Allowed MIME types",
+      "allowedMimeTypesDes": "One MIME type per line",
+      "allowedExtensions": "Allowed extensions",
+      "allowedExtensionsDes": "One extension per line (e.g. .jpg)"
+    },
+    "maintenance": {
+      "modeTitle": "Maintenance Mode",
+      "enableTitle": "Enable Maintenance Mode",
+      "enableDesc": "When enabled, only admins can access the API",
+      "cacheTitle": "Cache Management",
+      "clearTitle": "Clear Application Cache",
+      "clearButton": "Clear Cache",
+      "clearDesc": "Clears all application caches including API response cache. Active sessions will not be interrupted.",
+      "clearConfirm": "This will clear all application caches. Active sessions will not be affected but some data may need to be reloaded.",
+      "clearSuccess": "Cache cleared successfully",
+      "clearError": "Failed to clear cache"
+    },
+    "version": {
+      "title": "Version Status",
+      "current": "Current Version",
+      "latest": "Latest Available Version",
+      "lastChecked": "Last Checked",
+      "unknown": "Unknown",
+      "upToDate": "Up to date",
+      "updateAvailable": "Update available",
+      "never": "Never"
+    },
+    "preferences": {
+      "dateFormat": "Date Format",
+      "dateFormatDesc": "Choose how dates are displayed across all tables.",
+      "preview": "Preview",
+      "previewDate": "Date only:",
+      "previewDateTime": "Date + time:",
+      "previewDateTimeSeconds": "Date + time + seconds:"
+    }
+  },
+  "users": {
+    "subtitle": "{{count}} users",
+    "toolbar": {
+      "create": "Create",
+      "refresh": "Refresh",
+      "filter": "Filter",
+      "columns": "Columns",
+      "searchPlaceholder": "Search users…"
+    },
+    "table": {
+      "noResults": "No users found",
+      "rowsPerPage": "Rows per page:",
+      "headers": {
+        "username": "Username",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "elo": "ELO",
+        "created": "Created",
+        "level": "Level",
+        "rank": "Rank",
+        "xp": "XP",
+        "eloGames": "ELO Games",
+        "online": "Online",
+        "lastSeen": "Last seen",
+        "language": "Language",
+        "games": "Games",
+        "winRate": "Win rate",
+        "streak": "Streak",
+        "currentGame": "Current game",
+        "updated": "Updated",
+        "privateId": "Private ID",
+        "publicId": "Public ID"
+      }
+    },
+    "role": {
+      "user": "User",
+      "moderator": "Moderator",
+      "administrator": "Admin"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive",
+      "banned": "Banned",
+      "suspended": "Suspended",
+      "deleted": "Deleted"
+    },
+    "online": "Online",
+    "offline": "Offline",
+    "inGame": "In game",
+    "copy": "Copy",
+    "copied": "Copied!",
+    "yes": "Yes",
+    "no": "No",
+    "filter": {
+      "title": "Filters",
+      "role": "Role",
+      "status": "Status",
+      "online": "Online status",
+      "rank": "Rank",
+      "all": "All",
+      "reset": "Reset",
+      "apply": "Apply"
+    },
+    "columns": {
+      "title": "Optional columns"
+    },
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete",
+      "viewDetails": "View details",
+      "ban": "Ban user",
+      "deactivate": "Deactivate",
+      "reactivate": "Reactivate",
+      "unban": "Unban user"
+    },
+    "view": {
+      "title": "User details",
+      "activity": "View activity",
+      "sections": {
+        "account": "Account",
+        "ban": "Ban details",
+        "progression": "Progression",
+        "gameStats": "Game stats",
+        "privacy": "Privacy",
+        "activity": "Activity"
+      },
+      "fields": {
+        "status": "Status",
+        "role": "Role",
+        "language": "Language",
+        "bio": "Bio",
+        "bannedUntil": "Banned until",
+        "reason": "Reason",
+        "permanent": "Permanent",
+        "level": "Level",
+        "rank": "Rank",
+        "experience": "Experience",
+        "eloRating": "ELO Rating",
+        "eloGames": "ELO Games",
+        "totalGames": "Total games",
+        "winRate": "Win rate",
+        "won": "Won",
+        "lost": "Lost",
+        "drawn": "Drawn",
+        "dayStreak": "Day streak",
+        "bestStreak": "Best streak",
+        "avgScore": "Avg score",
+        "totalScore": "Total score",
+        "publicProfile": "Public profile",
+        "showOnlineStatus": "Show online status",
+        "allowFriendRequests": "Allow friend requests",
+        "allowPartyInvites": "Allow party invites",
+        "privateId": "Private ID",
+        "publicId": "Public ID",
+        "createdAt": "Created at",
+        "lastSeen": "Last seen",
+        "updatedAt": "Updated at"
+      }
+    },
+    "edit": {
+      "title": "Edit user",
+      "sections": {
+        "account": "Account",
+        "profile": "Profile",
+        "privacy": "Privacy"
+      },
+      "fields": {
+        "username": "Username",
+        "email": "Email",
+        "role": "Role",
+        "status": "Status",
+        "language": "Language",
+        "newPassword": "New password",
+        "passwordPlaceholder": "Leave blank to keep current",
+        "bio": "Bio",
+        "publicProfile": "Public profile",
+        "showOnlineStatus": "Show online status",
+        "allowFriendRequests": "Allow friend requests",
+        "allowPartyInvites": "Allow party invites"
+      },
+      "levelRank": "Level / Rank",
+      "created": "Created",
+      "lastSeen": "Last seen",
+      "avatar": {
+        "remove": "Remove",
+        "updated": "Avatar updated",
+        "removed": "Avatar removed",
+        "uploadError": "Failed to upload avatar",
+        "removeError": "Failed to remove avatar"
+      },
+      "revert": "Revert",
+      "save": "Save",
+      "success": "User updated successfully",
+      "error": "Failed to update user"
+    },
+    "create": {
+      "title": "Create user",
+      "cancel": "Cancel",
+      "create": "Create",
+      "success": "User created successfully",
+      "error": "Failed to create user"
+    },
+    "delete": {
+      "success": "User deleted",
+      "error": "Failed to delete user"
+    },
+    "ban": {
+      "title": "Ban user",
+      "description": "Ban {{username}} from the platform.",
+      "duration": "Duration",
+      "reason": "Reason",
+      "reasonPlaceholder": "Optional reason for the ban…",
+      "confirm": "Ban user",
+      "success": "User banned successfully",
+      "error": "Failed to ban user"
+    },
+    "unban": {
+      "title": "Unban user",
+      "description": "Are you sure you want to unban {{username}}?",
+      "confirm": "Unban",
+      "success": "User unbanned successfully",
+      "error": "Failed to unban user"
+    },
+    "deactivate": {
+      "title": "Deactivate account",
+      "description": "Deactivate {{username}}'s account? They will not be able to log in.",
+      "confirm": "Deactivate",
+      "success": "Account deactivated",
+      "error": "Failed to deactivate account"
+    },
+    "reactivate": {
+      "title": "Reactivate account",
+      "description": "Reactivate {{username}}'s account?",
+      "confirm": "Reactivate",
+      "success": "Account reactivated",
+      "error": "Failed to reactivate account"
+    }
+  },
+  "frame": {
+    "lightMode": "Light mode",
+    "darkMode": "Dark mode",
+    "language": "Language",
+    "logout": "Sign out",
+    "account": "Account",
+    "viewProfile": "View profile",
+    "termsOfUse": "Terms of use",
+    "privacyPolicy": "Privacy policy",
+    "poweredBy": "Powered by"
+  },
+  "analytics": {
+    "title": "Analytics Dashboard",
+    "subtitle": "Track your platform performance and user engagement",
+    "error": "Failed to load analytics data",
+    "noData": "No data available",
+    "timeRange": {
+      "1h": "1 Hour",
+      "6h": "6 Hours",
+      "12h": "12 Hours",
+      "1d": "1 Day",
+      "7d": "7 Days",
+      "30d": "30 Days",
+      "90d": "90 Days",
+      "1y": "1 Year"
+    },
+    "kpi": {
+      "totalUsers": "Total Users",
+      "allTime": "All time",
+      "onlineNow": "Online Now",
+      "activeUsers": "Active users",
+      "weeklyActive": "Weekly Active",
+      "wau": "WAU",
+      "newThisWeek": "New This Week",
+      "userRegistrations": "User registrations",
+      "totalGames": "Total Games",
+      "activeGames": "Active Games",
+      "completedGames": "Completed Games",
+      "avgDuration": "Avg Duration",
+      "abandonedGames": "Abandoned"
+    },
+    "charts": {
+      "userGrowth": "User Growth",
+      "userGrowthDesc": "New user registrations and cumulative total over time",
+      "newUsers": "New Users",
+      "totalUsers": "Total Users",
+      "dailyActivity": "Daily Activity",
+      "dailyActivityDesc": "Games created, completed, and player participation",
+      "gameActivity": "Game Activity",
+      "gameActivityDesc": "Each dot is a game — position shows time, height shows player count",
+      "gamesCreated": "Games Created",
+      "gamesCompleted": "Games Completed",
+      "players": "Players",
+      "userActivity": "User Activity",
+      "userActivityDesc": "Daily active users and sessions",
+      "activeUsers": "Active Users",
+      "sessions": "Sessions",
+      "gamesByMode": "Games by Mode",
+      "gamesByModeDesc": "Distribution of games across different modes",
+      "usersByRank": "Users by Rank",
+      "usersByRankDesc": "Distribution of users across skill levels",
+      "users": "Users",
+      "topPlayers": "Top 10 Players",
+      "topPlayersDesc": "Highest scoring players of all time",
+      "score": "Score",
+      "systemHealth": "System Health",
+      "systemHealthDesc": "Current status of platform services",
+      "responseTime": "Response time: {{ms}}ms"
+    },
+    "sections": {
+      "general": "General",
+      "users": "Users",
+      "games": "Games",
+      "api": "API"
+    },
+    "general": {
+      "totalUsers": "Total Users",
+      "activeSessions": "Active Sessions",
+      "totalApiRequests": "Total API Requests",
+      "avgResponseTime": "Avg Response Time"
+    },
+    "apiLogs": {
+      "totalRequests": "Total Requests",
+      "successRate": "Success Rate",
+      "avgResponseTime": "Avg Response Time",
+      "dailyAverage": "Daily Average",
+      "timeline": "API Requests Timeline",
+      "timelineDesc": "Request volume over time",
+      "statusCodes": "Status Codes",
+      "methods": "HTTP Methods",
+      "adminActions": "Admin Actions",
+      "userActions": "User Actions",
+      "noData": "No data"
+    }
+  },
+  "logs": {
+    "tabs": {
+      "admin": "Admin Actions",
+      "users": "User Actions"
+    },
+    "stats": {
+      "totalActions": "Total Actions",
+      "successRate": "Success Rate",
+      "dailyAvg": "Daily Average",
+      "topAction": "Top Action",
+      "topUsers": "Active Users"
+    },
+    "charts": {
+      "byActionType": "Actions by Type",
+      "byResource": "Actions by Resource",
+      "byAdmin": "Activity by Admin",
+      "topUsers": "Most Active Users",
+      "actions": "Actions"
+    },
+    "filter": {
+      "action": "Action",
+      "resource": "Resource",
+      "status": "Status",
+      "success": "Success",
+      "failure": "Failure"
+    },
+    "table": {
+      "admin": "Admin",
+      "user": "User",
+      "action": "Action",
+      "resource": "Resource",
+      "resourceId": "Resource ID",
+      "ip": "IP Address",
+      "userAgent": "User Agent",
+      "status": "Status",
+      "errorMsg": "Error",
+      "date": "Date"
+    },
+    "columns": {
+      "resourceId": "Resource ID",
+      "ip": "IP Address",
+      "userAgent": "User Agent",
+      "errorMsg": "Error Message"
+    },
+    "status": {
+      "success": "Success",
+      "failure": "Failure"
+    },
+    "noResults": "No logs found",
+    "totalEntries": "{{count}} entries",
+    "searchPlaceholder": "Search logs…"
+  },
+  "avatars": {
+    "subtitle": "{{count}} users with avatars",
+    "view": {
+      "label": "View",
+      "layout": "Layout",
+      "grid": "Grid",
+      "list": "List"
+    }
+  },
+  "reports": {
+    "subtitle": "{{count}} reports",
+    "filter": {
+      "status": "Status"
+    },
+    "status": {
+      "pending": "Pending",
+      "in_progress": "In Progress",
+      "resolved": "Resolved"
+    },
+    "table": {
+      "user": "User",
+      "reason": "Reason",
+      "message": "Message",
+      "status": "Status",
+      "created_at": "Created",
+      "updated_at": "Updated",
+      "resolution_notes": "Resolution Notes",
+      "question": "Question",
+      "created": "Created",
+      "by": "by",
+      "noResults": "No reports found"
+    },
+    "update": {
+      "title": "Report Details",
+      "newStatus": "New Status",
+      "notes": "Resolution Notes",
+      "notesPlaceholder": "Add resolution notes...",
+      "save": "Save",
+      "saving": "Saving...",
+      "success": "Report updated successfully",
+      "error": "Failed to update report"
+    },
+    "action": {
+      "update": "Update status"
+    }
+  },
+  "questionsPage": {
+    "title": "Questions",
+    "subtitle": "{{count}} questions",
+    "empty": "No questions found",
+    "noDataset": "No question datasets available. Import one first.",
+    "selectDataset": "Select a dataset to view questions.",
+    "search": "Search questions…",
+    "toolbar": {
+      "refresh": "Refresh",
+      "filter": "Filter",
+      "columns": "Columns"
+    },
+    "columns": {
+      "question": "Question",
+      "type": "Type",
+      "difficulty": "Difficulty",
+      "theme": "Theme",
+      "kind": "Kind",
+      "tags": "Tags",
+      "estTime": "Est. time",
+      "successRate": "Success rate",
+      "timesPlayed": "Times played",
+      "avgTime": "Avg time",
+      "version": "Version",
+      "createdAt": "Created at"
+    },
+    "filter": {
+      "difficulty": "Difficulty",
+      "type": "Type",
+      "theme": "Theme",
+      "all": "All",
+      "easy": "Easy",
+      "medium": "Medium",
+      "hard": "Hard",
+      "mcq": "MCQ",
+      "textInput": "Text input",
+      "reset": "Reset",
+      "apply": "Apply"
+    }
+  },
+  "games": {
+    "subtitle": "{{count}} games",
+    "empty": "No games found",
+    "columns": {
+      "mode": "Mode",
+      "status": "Status",
+      "players": "Players",
+      "questions": "Questions",
+      "category": "Category",
+      "language": "Language",
+      "flagVariant": "Flag variant",
+      "createdAt": "Created at",
+      "startedAt": "Started at",
+      "completedAt": "Completed at",
+      "duration": "Duration",
+      "publicId": "Public ID"
+    },
+    "mode": {
+      "solo": "Solo",
+      "1v1": "1v1",
+      "multi": "Multi"
+    },
+    "status": {
+      "waiting": "Waiting",
+      "ready": "Ready",
+      "in_progress": "In progress",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "abandoned": "Abandoned",
+      "archived": "Archived"
+    },
+    "playerStatus": {
+      "playing": "Playing",
+      "finished": "Finished",
+      "left": "Left",
+      "disconnected": "Disconnected"
+    },
+    "filter": {
+      "mode": "Mode",
+      "status": "Status",
+      "archived": "Archived",
+      "archivedAll": "All",
+      "archivedOnly": "Archived only",
+      "archivedExclude": "Exclude archived",
+      "all": "All",
+      "reset": "Reset",
+      "apply": "Apply"
+    },
+    "toolbar": {
+      "refresh": "Refresh",
+      "filter": "Filter",
+      "columns": "Columns",
+      "search": "Search games…"
+    },
+    "actions": {
+      "view": "View",
+      "cancel": "Cancel game",
+      "delete": "Delete",
+      "cancelConfirm": "Cancel this game? Players will be disconnected.",
+      "cancelTitle": "Cancel game",
+      "deleteTitle": "Delete game",
+      "deleteConfirm": "Delete this game permanently? This action cannot be undone.",
+      "loadQA": "Load questions & answers",
+      "cancelSuccess": "Game cancelled",
+      "cancelError": "Failed to cancel game",
+      "deleteSuccess": "Game deleted",
+      "deleteError": "Failed to delete game",
+      "archive": "Archive",
+      "archiveTitle": "Archive game",
+      "archiveConfirm": "Archive this game? It will be hidden but can be restored.",
+      "archiveSuccess": "Game archived",
+      "archiveError": "Failed to archive game",
+      "unarchive": "Restore",
+      "unarchiveSuccess": "Game restored",
+      "unarchiveError": "Failed to restore game",
+      "cleanup": "Cleanup",
+      "cleanupTitle": "Cleanup abandoned games",
+      "cleanupConfirm": "This will cancel all abandoned or stuck games. This action cannot be undone.",
+      "cleanupSuccess": "Cleanup completed",
+      "cleanupError": "Cleanup failed",
+      "maintenance": "Maintenance",
+      "maintenanceTitle": "Run game maintenance",
+      "maintenanceConfirm": "This will permanently delete completed games older than 30 days and cancel expired invitations (older than 7 days). This action cannot be undone.",
+      "maintenanceSuccess": "Maintenance completed",
+      "maintenanceError": "Maintenance failed"
+    },
+    "detail": {
+      "title": "Game details",
+      "info": "Information",
+      "players": "Players",
+      "questionsAnswers": "Questions & Answers",
+      "winner": "Winner",
+      "noWinner": "No winner",
+      "noQuestions": "No questions available",
+      "noAnswer": "No answer recorded",
+      "duration": "Duration",
+      "createdAt": "Created at",
+      "startedAt": "Started at",
+      "completedAt": "Completed at",
+      "creator": "Creator",
+      "category": "Category",
+      "language": "Language",
+      "flagVariant": "Flag variant",
+      "questionCount": "Questions",
+      "questions": "Answered",
+      "accuracy": "Accuracy",
+      "config": "Configuration",
+      "template": "Template",
+      "pointsPerCorrect": "Pts / question",
+      "timeBonus": "Time bonus",
+      "maxPlayers": "Players",
+      "scoreChart": "Score by question",
+      "questionN": "Question",
+      "correct": "Correct",
+      "incorrect": "Incorrect",
+      "openFull": "Open full details",
+      "backToGames": "Back to games",
+      "notFound": "Game not found",
+      "minutes": "min",
+      "timeline": "Timeline",
+      "gameCreated": "Game created",
+      "gameStarted": "Game started",
+      "gameCompleted": "Game completed",
+      "gameCancelled": "Game cancelled"
+    }
+  }
+}
