@@ -116,8 +116,6 @@ export const DATASETS_ENDPOINTS = {
   LIST_COUNTRIES: (id: string) => `${API_BASE}/admin/geography/${id}/countries`,
   SEARCH_COUNTRIES: (id: string) =>
     `${API_BASE}/admin/geography/${id}/countries/search`,
-  GET_COUNTRY: (id: string, slug: string) =>
-    `${API_BASE}/admin/geography/${id}/countries/${slug}`,
   UPDATE_COUNTRY: (id: string, slug: string) =>
     `${API_BASE}/admin/geography/${id}/countries/${slug}`,
   COUNTRIES_BY_CONTINENT: (id: string, continent: string) =>
@@ -127,23 +125,15 @@ export const DATASETS_ENDPOINTS = {
 
   LIST_CONTINENTS: (id: string) =>
     `${API_BASE}/admin/geography/${id}/continents`,
-  GET_CONTINENT: (id: string, slug: string) =>
-    `${API_BASE}/admin/geography/${id}/continents/${slug}`,
   UPDATE_CONTINENT: (id: string, slug: string) =>
     `${API_BASE}/admin/geography/${id}/continents/${slug}`,
 
   LIST_REGIONS: (id: string) => `${API_BASE}/admin/geography/${id}/regions`,
-  GET_REGION: (id: string, slug: string) =>
-    `${API_BASE}/admin/geography/${id}/regions/${slug}`,
   UPDATE_REGION: (id: string, slug: string) =>
     `${API_BASE}/admin/geography/${id}/regions/${slug}`,
-  REGIONS_BY_CONTINENT: (id: string, continent: string) =>
-    `${API_BASE}/admin/geography/${id}/regions/continent/${continent}`,
 
   GET_FLAG: (countryCode: string) =>
     `${API_BASE}/admin/geography/flags/${countryCode}`,
-  GET_FLAG_URL: (id: string, countryCode: string) =>
-    `${API_BASE}/admin/geography/${id}/flags/${countryCode}/url`,
 } as const;
 
 export const GAMES_ENDPOINTS = {
