@@ -28,6 +28,7 @@ import {
 } from "@mui/material";
 import { alpha, useTheme } from "@mui/material/styles";
 import {
+  ArrowReset20Regular,
   Checkmark20Regular,
   CheckmarkCircle20Regular,
   Copy20Regular,
@@ -557,17 +558,48 @@ export default function UserDetailPage() {
 
                     <Stack spacing={1.5}>
                       <SectionLabel>Identifiers</SectionLabel>
-                      {[{ label: "Public ID", value: user?.public_id }, { label: "Private ID", value: user?.id }].map(({ label, value }) => (
-                        <Box key={label}>
-                          <Typography variant="caption" color="text.disabled">{label}</Typography>
-                          {loading ? <Skeleton variant="text" width="100%" sx={{ fontSize: "0.78rem" }} /> : (
-                            <Stack direction="row" alignItems="center" spacing={0.5}>
-                              <Typography variant="body2" sx={{ fontFamily: "monospace", fontSize: "0.72rem", color: "text.secondary", wordBreak: "break-all", flexGrow: 1 }}>{value}</Typography>
-                              {value && <CopyButton value={value} />}
-                            </Stack>
-                          )}
-                        </Box>
-                      ))}
+                      <Box>
+                        <Typography variant="caption" color="text.disabled">Public ID</Typography>
+                        {loading ? <Skeleton variant="text" width="100%" sx={{ fontSize: "0.78rem" }} /> : (
+                          <Stack direction="row" alignItems="center" spacing={0.5}>
+                            <Typography variant="body2" sx={{ fontFamily: "monospace", fontSize: "0.72rem", color: "text.secondary", wordBreak: "break-all", flexGrow: 1 }}>{user?.public_id}</Typography>
+                            {user?.public_id && <CopyButton value={user.public_id} />}
+                            <Tooltip title="Regenerate Public ID" placement="top">
+                              <IconButton
+                                size="small"
+                                onClick={async () => {
+                                  const ok = await confirm({
+                                    title: "Regenerate Public ID",
+                                    description: `Generate a new Public ID for ${user?.username ?? "this user"}. The current Public ID will no longer be valid.`,
+                                    confirmText: "Regenerate",
+                                    danger: true,
+                                  });
+                                  if (!ok) return;
+                                  try {
+                                    const updated = await usersService.regeneratePublicId(id!);
+                                    setUser(updated);
+                                    enqueueSnackbar("Public ID regenerated successfully", { variant: "success" });
+                                  } catch (err) {
+                                    enqueueSnackbar(err instanceof Error ? err.message : "Failed to regenerate Public ID", { variant: "error" });
+                                  }
+                                }}
+                                sx={{ p: 0.25, color: "text.disabled", "&:hover": { color: "warning.main" } }}
+                              >
+                                <ArrowReset20Regular style={{ fontSize: 13 }} />
+                              </IconButton>
+                            </Tooltip>
+                          </Stack>
+                        )}
+                      </Box>
+                      <Box>
+                        <Typography variant="caption" color="text.disabled">Private ID</Typography>
+                        {loading ? <Skeleton variant="text" width="100%" sx={{ fontSize: "0.78rem" }} /> : (
+                          <Stack direction="row" alignItems="center" spacing={0.5}>
+                            <Typography variant="body2" sx={{ fontFamily: "monospace", fontSize: "0.72rem", color: "text.secondary", wordBreak: "break-all", flexGrow: 1 }}>{user?.id}</Typography>
+                            {user?.id && <CopyButton value={user.id} />}
+                          </Stack>
+                        )}
+                      </Box>
                     </Stack>
 
                     <Divider />

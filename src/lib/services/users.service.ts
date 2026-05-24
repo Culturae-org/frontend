@@ -68,6 +68,10 @@ class UsersService extends BaseService {
     return this.delete<void>(USERS_ENDPOINTS.DELETE(id));
   }
 
+  async regeneratePublicId(id: string): Promise<AdminUser> {
+    return this.post<AdminUser>(USERS_ENDPOINTS.REGENERATE_PUBLIC_ID(id), {});
+  }
+
   async getUserCount(): Promise<number> {
     return this.get<number>(USERS_ENDPOINTS.COUNT);
   }
