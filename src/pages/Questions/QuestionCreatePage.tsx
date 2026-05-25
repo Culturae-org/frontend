@@ -490,7 +490,7 @@ export default function QuestionCreatePage() {
                                 checked={f.value}
                                 onChange={(_, v) => f.onChange(v)}
                                 size="small"
-                                color="success"
+                                color="primary"
                                 sx={{ p: 0.5 }}
                               />
                             )}
