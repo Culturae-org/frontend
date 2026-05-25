@@ -40,16 +40,14 @@ export function buildUrl(
 
 export function extractApiData<T>(response: unknown, dataPath?: string): T {
   const resp = response as Record<string, unknown>;
+  const data = resp?.data as T;
 
   if (dataPath) {
-    const data = resp?.data as Record<string, unknown> | undefined;
-    if (data) {
-      return (data[dataPath] ?? response) as T;
-    }
-    return (resp[dataPath] ?? response) as T;
+    const dataObj = data as Record<string, unknown> | undefined;
+    return (dataObj?.[dataPath] ?? data) as T;
   }
 
-  return (resp?.data ?? response) as T;
+  return data;
 }
 
 export function extractApiMessage(response: unknown): string | undefined {
