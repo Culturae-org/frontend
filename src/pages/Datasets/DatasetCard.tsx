@@ -15,12 +15,14 @@ import {
   CheckmarkCircle20Filled,
   Delete20Regular,
   DismissCircle20Filled,
+  Edit20Regular,
   Eye20Regular,
   EyeOff20Regular,
   MoreVertical20Regular,
   Star20Regular,
 } from "@fluentui/react-icons";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import type { UnifiedDataset } from "@/hooks/useDatasetsList";
 import { DenseDivider, SquareMenu, SquareMenuItem } from "@/components/Common/RowActionMenu";
 
@@ -67,6 +69,7 @@ function formatCount(dataset: UnifiedDataset): string {
 }
 
 export default function DatasetCard({ dataset, loading, onSetDefault, onToggleActive, onDelete }: Props) {
+  const navigate = useNavigate();
   const [anchor, setAnchor] = useState<HTMLElement | null>(null);
 
   if (loading) {
@@ -104,7 +107,6 @@ export default function DatasetCard({ dataset, loading, onSetDefault, onToggleAc
   return (
     <Grid size={{ xs: 12, md: 6, lg: 4 }}>
       <BorderedCard>
-        {/* Header: name + type label */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Typography variant="subtitle1" fontWeight={600} noWrap sx={{ minWidth: 0, mr: 1 }}>
             {dataset.name}
@@ -114,7 +116,6 @@ export default function DatasetCard({ dataset, loading, onSetDefault, onToggleAc
           </Typography>
         </Box>
 
-        {/* Middle: slug + chips */}
         <Box sx={{ mt: 1, mb: 2 }}>
           <Typography
             variant="caption"
@@ -157,7 +158,6 @@ export default function DatasetCard({ dataset, loading, onSetDefault, onToggleAc
 
         <Divider sx={{ my: 1 }} />
 
-        {/* Footer: status + actions */}
         <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <Box sx={{ display: "flex", alignItems: "center" }}>
             {dataset.is_active ? (
@@ -197,6 +197,11 @@ export default function DatasetCard({ dataset, loading, onSetDefault, onToggleAc
         anchorOrigin={{ horizontal: "right", vertical: "bottom" }}
         MenuListProps={{ dense: true }}
       >
+        <SquareMenuItem onClick={() => { setAnchor(null); navigate(`/datasets/${dataset.id}`); }}>
+          <ListItemIcon><Edit20Regular /></ListItemIcon>
+          <ListItemText>Edit</ListItemText>
+        </SquareMenuItem>
+        <DenseDivider />
         {!dataset.is_default && (
           <SquareMenuItem onClick={() => { setAnchor(null); onSetDefault?.(dataset); }}>
             <ListItemIcon><Star20Regular /></ListItemIcon>
