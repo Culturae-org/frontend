@@ -1,6 +1,7 @@
 import {
   Badge,
   Box,
+  Button,
   FormControl,
   IconButton,
   InputAdornment,
@@ -21,6 +22,7 @@ import {
   Typography,
 } from "@mui/material";
 import {
+  Add20Regular,
   ArrowSync20Regular,
   Dismiss20Regular,
   Filter20Regular,
@@ -28,6 +30,7 @@ import {
   TextColumnThree20Regular,
 } from "@fluentui/react-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 import PageContainer from "@/components/Common/PageContainer";
 import PageHeader from "@/components/Common/PageHeader";
 import type { QuestionDataset } from "@/lib/types/datasets.types";
@@ -63,6 +66,7 @@ const COLUMN_HEADERS: Record<QuestionColumnKey, { label: string; align?: "right"
 const PAGE_SIZE_OPTIONS = [20, 50, 100];
 
 export default function QuestionsPage() {
+  const navigate = useNavigate();
   const [questionDatasets, setQuestionDatasets] = useState<QuestionDataset[]>([]);
   const [datasetId, setDatasetId] = useState("");
 
@@ -228,6 +232,14 @@ export default function QuestionsPage() {
             >
               Columns
             </SecondaryButton>
+
+            <Button
+              variant="contained"
+              startIcon={<Add20Regular />}
+              onClick={() => navigate("/questions/new")}
+            >
+              New question
+            </Button>
 
             <TextField
               size="small"

@@ -23,6 +23,7 @@ const protectedPages: RouteObject[] = [
   { path: "datasets", lazy: lazy(() => import("@/pages/Datasets/DatasetsPage")) },
   { path: "geography", lazy: lazy(() => import("@/pages/Geography/GeographyPage")) },
   { path: "questions", lazy: lazy(() => import("@/pages/Questions/QuestionsPage")) },
+  { path: "questions/new", lazy: lazy(() => import("@/pages/Questions/QuestionCreatePage")) },
   { path: "reports", lazy: lazy(() => import("@/pages/Reports/ReportsPage")) },
   { path: "games", lazy: lazy(() => import("@/pages/Games/GamesPage")) },
   { path: "games/:id", lazy: lazy(() => import("@/pages/Games/GameDetailPage")) },
