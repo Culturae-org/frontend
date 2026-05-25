@@ -448,7 +448,7 @@ export default function UserDetailPage() {
       mode: modeFilter || undefined,
     }).then((res) => {
       setTableGames(res.data);
-      setTableTotal(res.total ?? 0);
+      setTableTotal(res.total_count ?? 0);
     }).catch(() => {}).finally(() => setTableLoading(false));
   }, [id, gamePage, gameRowsPerPage, statusFilter, modeFilter]);
 
@@ -461,7 +461,7 @@ export default function UserDetailPage() {
       action: logActionFilter || undefined,
     }).then((res) => {
       setTableLogs(res.data);
-      setTableLogsTotal(res.total ?? 0);
+      setTableLogsTotal(res.total_count ?? 0);
     }).catch(() => {}).finally(() => setTableLogsLoading(false));
   }, [id, logPage, logRowsPerPage, logActionFilter]);
 
@@ -474,7 +474,7 @@ export default function UserDetailPage() {
       success: connSuccessFilter || undefined,
     }).then((res) => {
       setTableConns(res.data);
-      setTableConnsTotal(res.total ?? 0);
+      setTableConnsTotal(res.total_count ?? 0);
     }).catch(() => {}).finally(() => setConnLoading(false));
   }, [id, connPage, connRowsPerPage, connSuccessFilter]);
 

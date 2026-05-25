@@ -50,7 +50,7 @@ export function useAvatarsList() {
       });
       setUsers(data.data ?? []);
       setCurrentPage(data.page ?? page);
-      setTotalCount(data.total ?? 0);
+      setTotalCount(data.total_count ?? 0);
     } catch (err) {
       enqueueSnackbar(err instanceof Error ? err.message : "Failed to fetch avatars", { variant: "error" });
     } finally {

@@ -67,7 +67,7 @@ export function useGames() {
         setGames(res.data);
         setCurrentPage(res.page);
         setTotalPages(res.total_pages);
-        setTotalCount(res.total);
+        setTotalCount(res.total_count);
       } catch (err) {
         setError(err instanceof Error ? err.message : "Failed to load games");
       } finally {

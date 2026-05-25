@@ -111,17 +111,15 @@ export abstract class BaseService {
 
     const json = await response.json();
     const pag = json.pagination ?? {};
-    const limit = pag.limit ?? (Number(params.limit) || 10);
 
     return {
       data: json.data ?? [],
-      page:
-        pag.offset !== undefined
-          ? Math.floor(pag.offset / limit) + 1
-          : Number(params.page) || 1,
-      limit,
-      total: pag.total ?? 0,
-      total_pages: limit > 0 ? Math.ceil((pag.total ?? 0) / limit) : 0,
+      page: pag.page ?? (Number(params.page) || 1),
+      limit: pag.limit ?? (Number(params.limit) || 10),
+      total_count: pag.total_count ?? 0,
+      total_pages: pag.total_pages ?? 0,
+      has_next_page: pag.has_next_page ?? false,
+      has_prev_page: pag.has_prev_page ?? false,
     };
   }
 }

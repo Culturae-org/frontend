@@ -48,7 +48,7 @@ export function useAdminLogsData() {
 
       const result = await logsService.getAdminActionLogs(params);
       setLogs(result.data);
-      setTotal(result.total);
+      setTotal(result.total_count);
     } catch {
       setLogs([]);
     } finally {

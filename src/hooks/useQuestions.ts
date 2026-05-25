@@ -35,7 +35,7 @@ export function useQuestions(defaultDatasetId?: string) {
         setQuestions(result.data);
         setCurrentPage(result.page);
         setTotalPages(result.total_pages);
-        setTotalCount(result.total);
+        setTotalCount(result.total_count);
         return result;
       } catch (err) {
         const message =

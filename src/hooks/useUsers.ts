@@ -33,7 +33,7 @@ export function useUserMutations() {
       setUsers(data.data || []);
       setCurrentPage(data.page || 1);
       setTotalPages(data.total_pages || 1);
-      setTotalCount(data.total || 0);
+      setTotalCount(data.total_count || 0);
     } catch (err) {
       const msg = err instanceof Error ? err.message : "Failed to fetch users";
       setError(msg);
@@ -365,8 +365,8 @@ export function useUsersList(options?: {
         setUsers(data.data || []);
         setCurrentPage(data.page || page);
         setTotalPages(data.total_pages || 1);
-        setTotalCount(data.total || 0);
-        optionsRef.current?.onTotalCountChange?.(data.total || 0);
+        setTotalCount(data.total_count || 0);
+        optionsRef.current?.onTotalCountChange?.(data.total_count || 0);
       } catch (err) {
         const msg =
           err instanceof Error ? err.message : "Failed to fetch users";

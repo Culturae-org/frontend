@@ -54,7 +54,7 @@ export default function UserActivityHeatmap({ userId }: Props) {
 
     const weeks: Array<Array<Date | null>> = [];
     const monthLabels: Array<{ col: number; label: string }> = [];
-    let current = new Date(start);
+    const current = new Date(start);
     let lastMonth = -1;
 
     for (let w = 0; w < totalWeeks; w++) {

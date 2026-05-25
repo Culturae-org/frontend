@@ -25,7 +25,7 @@ export function useGameTemplates() {
       try {
         const res = await gameTemplatesService.getTemplates(params);
         setTemplates(res.data);
-        setTotal(res.total);
+        setTotal(res.total_count);
         setCurrentPage(res.page);
         setTotalPages(res.total_pages);
         setCurrentLimit(res.limit);

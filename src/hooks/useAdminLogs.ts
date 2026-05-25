@@ -33,7 +33,7 @@ export function useAdminLogs() {
 
         return {
           logs: result.data,
-          total_count: result.total,
+          total_count: result.total_count,
           total_pages: result.total_pages,
         };
       } catch (err) {

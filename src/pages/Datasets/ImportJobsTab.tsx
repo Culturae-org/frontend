@@ -60,7 +60,7 @@ export default function ImportJobsTab() {
         success: f.success === "all" ? undefined : f.success === "true",
       });
       setJobs(result.data);
-      setTotal(result.total);
+      setTotal(result.total_count);
     } finally {
       setLoading(false);
     }

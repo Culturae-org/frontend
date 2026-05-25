@@ -30,7 +30,7 @@ export function useImports() {
       setImports(result.data);
       setCurrentPage(result.page);
       setTotalPages(result.total_pages);
-      setTotalCount(result.total);
+      setTotalCount(result.total_count);
       return result;
     } catch (err) {
       const message =

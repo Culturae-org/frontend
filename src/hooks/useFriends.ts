@@ -19,7 +19,7 @@ export function useUserFriends(userId: string, page: number, limit: number) {
       try {
         const res = await friendsService.getFriendsForUser(userId, page, limit);
         setFriends(res.data);
-        setTotal(res.total);
+        setTotal(res.total_count);
       } catch (e: unknown) {
         const msg = e instanceof Error ? e.message : "Failed to load friends";
         setError(msg);
@@ -66,7 +66,7 @@ export function useUserFriendRequests(
           limit,
         });
         setRequests(res.data);
-        setTotal(res.total);
+        setTotal(res.total_count);
       } catch (e: unknown) {
         const msg =
           e instanceof Error ? e.message : "Failed to load friend requests";

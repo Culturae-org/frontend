@@ -11,21 +11,7 @@ class ReportsService extends BaseService {
     limit?: number;
     status?: string;
   }): Promise<PaginatedResponse<Report>> {
-    const url = this.buildPaginatedUrl(REPORTS_ENDPOINTS.LIST, { ...params });
-    const response = await apiGet(url);
-    if (!response.ok) await handleApiError(response, "Failed to fetch reports");
-    const json = await response.json();
-    const pagination = json.pagination ?? {};
-    const limit = pagination.limit ?? json.limit ?? params?.limit ?? 20;
-    const total = pagination.total ?? json.total ?? 0;
-    const page = params?.page ?? 1;
-    return {
-      data: json.data ?? json.reports ?? [],
-      page,
-      limit,
-      total,
-      total_pages: Math.ceil(total / limit) || 1,
-    };
+    return this.getPaginated<Report>(REPORTS_ENDPOINTS.LIST, { ...params });
   }
 
   async updateStatus(

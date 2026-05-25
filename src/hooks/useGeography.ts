@@ -41,7 +41,7 @@ export function useGeographyData(datasetId: string | undefined, pageSize = 20) {
               limit,
             });
         setCountries(response.data);
-        setTotalCountries(response.total);
+        setTotalCountries(response.total_count);
         setCurrentPage(page);
       } catch (err) {
         setError(
@@ -298,7 +298,7 @@ export function useCountriesList(datasetId: string) {
         setCountries(res.data);
         setCurrentPage(res.page);
         setTotalPages(res.total_pages);
-        setTotalCount(res.total);
+        setTotalCount(res.total_count);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : "Failed to load countries",

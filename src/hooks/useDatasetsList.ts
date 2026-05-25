@@ -96,7 +96,7 @@ export function useDatasetsList() {
         });
 
         setDatasets(response.data || []);
-        setTotalCount(response.total || 0);
+        setTotalCount(response.total_count || 0);
         setTotalPages(response.total_pages || 1);
       } catch (err) {
         setError(err instanceof Error ? err.message : "An error occurred");

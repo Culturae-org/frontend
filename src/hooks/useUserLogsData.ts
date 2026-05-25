@@ -45,7 +45,7 @@ export function useUserLogsData() {
 
       const result = await logsService.getAllUserActionLogs(params);
       setLogs(result.data);
-      setTotal(result.total);
+      setTotal(result.total_count);
     } catch {
       setLogs([]);
     } finally {
