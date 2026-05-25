@@ -18,7 +18,7 @@ class UsersService extends BaseService {
   async getUsers(
     params?: UsersQueryParams,
   ): Promise<PaginatedResponse<AdminUser>> {
-    if (params?.query?.trim()) {
+    if (params?.q?.trim()) {
       return this.getPaginated<AdminUser>(USERS_ENDPOINTS.SEARCH, {
         ...params,
       });

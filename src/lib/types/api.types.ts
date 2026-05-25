@@ -51,6 +51,6 @@ export interface UsersQueryParams extends PaginationParams {
   rank?: string;
   account_status?: string;
   status?: string;
-  query?: string;
+  q?: string;
   has_avatar?: boolean;
 }

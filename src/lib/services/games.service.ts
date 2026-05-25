@@ -22,7 +22,7 @@ class GamesService extends BaseService {
     limit?: number;
     status?: string;
     mode?: string;
-    query?: string;
+    q?: string;
     archived?: string;
   }): Promise<PaginatedResponse<AdminGame>> {
     return this.getPaginated<AdminGame>(GAMES_ENDPOINTS.LIST, {
@@ -30,7 +30,7 @@ class GamesService extends BaseService {
       limit: params?.limit,
       status: params?.status,
       mode: params?.mode,
-      query: params?.query,
+      q: params?.q,
       archived: params?.archived,
     });
   }

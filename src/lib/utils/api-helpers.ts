@@ -131,7 +131,7 @@ export const QueryBuilders = {
 
   filters: (filters: Record<string, string | number | boolean>) => filters,
 
-  search: (query?: string) => (query ? { query } : {}),
+  search: (query?: string) => (query ? { q: query } : {}),
 
   combined: (params: {
     page?: number;

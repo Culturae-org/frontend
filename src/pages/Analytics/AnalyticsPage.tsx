@@ -113,7 +113,7 @@ export default function AnalyticsPage() {
 
   const handlePlayerClick = useCallback(async (username: string) => {
     try {
-      const res = await usersService.getUsers({ query: username, limit: 1 });
+      const res = await usersService.getUsers({ q: username, limit: 1 });
       const user = res.data?.[0];
       if (user?.id) navigate(`/users/${user.id}`);
     } catch { /* ignore */ }

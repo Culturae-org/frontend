@@ -354,7 +354,7 @@ export function useUsersList(options?: {
         const params = {
           page,
           limit,
-          query: debouncedSearch || undefined,
+          q: debouncedSearch || undefined,
           ...Object.fromEntries(
             Object.entries(stateRef.current.filters).filter(
               ([_, v]) => v !== "",

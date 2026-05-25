@@ -46,7 +46,7 @@ export function useAvatarsList() {
         has_avatar: true,
         ...(f.role && { role: f.role }),
         ...(f.account_status && { account_status: f.account_status }),
-        ...(search && { query: search }),
+        ...(search && { q: search }),
       });
       setUsers(data.data ?? []);
       setCurrentPage(data.page ?? page);

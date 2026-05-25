@@ -61,7 +61,7 @@ export function useGames() {
           limit,
           mode: f.mode || undefined,
           status: f.status || undefined,
-          query: ds.trim() || undefined,
+          q: ds.trim() || undefined,
           archived: f.archived || undefined,
         });
         setGames(res.data);

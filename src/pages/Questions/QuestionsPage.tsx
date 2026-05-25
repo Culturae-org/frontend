@@ -100,7 +100,7 @@ export default function QuestionsPage() {
         dataset_id: opts.datasetId,
         page: opts.page,
         limit: opts.pageSize,
-        search: opts.search || undefined,
+        q: opts.search || undefined,
         difficulty: opts.filters.difficulty || undefined,
         qtype: opts.filters.qtype || undefined,
         theme: opts.filters.theme || undefined,

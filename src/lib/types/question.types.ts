@@ -130,7 +130,7 @@ export interface QuestionUpdateData {
 export interface QuestionsQueryParams {
   page?: number;
   limit?: number;
-  search?: string;
+  q?: string;
   dataset_id?: string;
   category?: string;
   difficulty?: string;
