@@ -1,19 +1,21 @@
 import {
   Badge,
   Box,
+  Button,
   LinearProgress,
   Stack,
   Typography,
 } from "@mui/material";
 import Grid from "@mui/material/Grid2";
 import {
+  Add20Regular,
   ArrowDownload20Regular,
   ArrowSync20Regular,
   CloudArrowUp20Regular,
   Filter20Regular,
 } from "@fluentui/react-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { useSearchParams } from "react-router";
+import { useNavigate, useSearchParams } from "react-router";
 import { useDatasetsList } from "@/hooks/useDatasetsList";
 import { useConfirm } from "@/components/Common/ConfirmDialog";
 import PageContainer from "@/components/Common/PageContainer";
@@ -27,6 +29,7 @@ import { SecondaryButton } from "@/components/Common/StyledComponents";
 import ResponsiveTabs from "@/components/Common/ResponsiveTabs";
 
 export default function DatasetsPage() {
+  const navigate = useNavigate();
   const [tab, setTab] = useState(0);
   const [importOpen, setImportOpen] = useState(false);
   const [filterAnchorEl, setFilterAnchorEl] = useState<HTMLElement | null>(null);
@@ -130,6 +133,13 @@ export default function DatasetsPage() {
                 Filter
               </SecondaryButton>
             </Badge>
+            <Button
+              variant="contained"
+              startIcon={<Add20Regular />}
+              onClick={() => navigate("/datasets/new")}
+            >
+              New dataset
+            </Button>
           </Stack>
 
           {isAnyLoading && (
