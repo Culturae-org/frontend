@@ -8,8 +8,10 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import { Delete20Regular, Edit20Regular } from "@fluentui/react-icons";
 import type { Question } from "@/lib/types/question.types";
 import type { QuestionColumnKey } from "./QuestionColumnsPopover";
+import { RowActionMenu } from "@/components/Common/RowActionMenu";
 
 const ROW_HEIGHT = 43;
 
@@ -18,6 +20,8 @@ interface QuestionRowProps {
   loading?: boolean;
   visibleColumns: Set<QuestionColumnKey>;
   onClick?: () => void;
+  onEdit?: () => void;
+  onDelete?: () => void;
 }
 
 const DIFFICULTY_COLOR: Record<string, "success" | "warning" | "error" | "default"> = {
@@ -165,7 +169,7 @@ function skeletonCellFor(col: QuestionColumnKey) {
   );
 }
 
-export default function QuestionRow({ question, loading, visibleColumns, onClick }: QuestionRowProps) {
+export default function QuestionRow({ question, loading, visibleColumns, onClick, onEdit, onDelete }: QuestionRowProps) {
   if (loading || !question) {
     return (
       <TableRow sx={{ height: ROW_HEIGHT }}>
@@ -176,6 +180,7 @@ export default function QuestionRow({ question, loading, visibleColumns, onClick
           <Skeleton variant="text" width={120} sx={{ fontSize: "0.875rem" }} />
         </TableCell>
         {Array.from(visibleColumns).map((col) => skeletonCellFor(col))}
+        <TableCell />
       </TableRow>
     );
   }
@@ -191,6 +196,14 @@ export default function QuestionRow({ question, loading, visibleColumns, onClick
         <Typography variant="body2" color="text.secondary" noWrap sx={{ fontFamily: "monospace", fontSize: "0.78rem", maxWidth: 200 }}>{question.slug}</Typography>
       </TableCell>
       {Array.from(visibleColumns).map((col) => cellFor(col, question))}
+      <TableCell align="right" sx={{ p: 0.5 }} onClick={(e) => e.stopPropagation()}>
+        <RowActionMenu
+          actions={[
+            { label: "Edit", icon: <Edit20Regular />, onClick: () => onEdit?.() },
+            { label: "Delete", icon: <Delete20Regular />, onClick: () => onDelete?.(), danger: true },
+          ]}
+        />
+      </TableCell>
     </TableRow>
   );
 }

@@ -31,8 +31,10 @@ import {
 } from "@fluentui/react-icons";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
+import { enqueueSnackbar } from "notistack";
 import PageContainer from "@/components/Common/PageContainer";
 import PageHeader from "@/components/Common/PageHeader";
+import { useConfirm } from "@/components/Common/ConfirmDialog";
 import type { QuestionDataset } from "@/lib/types/datasets.types";
 import { datasetsService } from "@/lib/services/datasets.service";
 import { questionsService } from "@/lib/services/questions.service";
@@ -67,6 +69,7 @@ const PAGE_SIZE_OPTIONS = [20, 50, 100];
 
 export default function QuestionsPage() {
   const navigate = useNavigate();
+  const confirm = useConfirm();
   const [questionDatasets, setQuestionDatasets] = useState<QuestionDataset[]>([]);
   const [datasetId, setDatasetId] = useState("");
 
@@ -309,6 +312,7 @@ export default function QuestionsPage() {
                       {COLUMN_HEADERS[col].label}
                     </TableCell>
                   ))}
+                  <TableCell sx={{ width: 40 }} />
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -340,6 +344,25 @@ export default function QuestionsPage() {
                       key={q.id}
                       question={q}
                       visibleColumns={new Set(orderedVisibleCols)}
+                      onClick={() => navigate(`/questions/${q.id}`)}
+                      onEdit={() => navigate(`/questions/${q.id}`)}
+                      onDelete={async () => {
+                        const ok = await confirm({
+                          title: "Delete question",
+                          description: `Delete "${q.slug}"? This action cannot be undone.`,
+                          confirmText: "Delete",
+                          danger: true,
+                        });
+                        if (ok) {
+                          try {
+                            await questionsService.deleteQuestion(q.id);
+                            enqueueSnackbar("Question deleted", { variant: "success" });
+                            fetchQuestions();
+                          } catch (err) {
+                            enqueueSnackbar(err instanceof Error ? err.message : "Failed to delete", { variant: "error" });
+                          }
+                        }
+                      }}
                     />
                   ))
                 )}
