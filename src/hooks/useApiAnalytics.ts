@@ -38,7 +38,7 @@ export function useApiAnalytics(timeRange: ApiTimeRange = "1h"): UseApiAnalytics
       const { start_date, end_date } = toDateParams(timeRange);
       const [apiStats, apiTimestamps] = await Promise.all([
         logsService.getAPIRequestStats({ start_date, end_date }),
-        logsService.getAPIRequestTimestamps({ date_from: start_date, date_to: end_date }),
+        logsService.getAPIRequestTimestamps({ start_date, end_date }),
       ]);
       setStats(apiStats);
       setTimestamps(Array.isArray(apiTimestamps) ? apiTimestamps : []);

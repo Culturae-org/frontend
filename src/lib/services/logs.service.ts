@@ -110,8 +110,8 @@ class LogsService extends BaseService {
   async getAPIRequestTimestamps(params?: {
     method?: string;
     status_code?: string;
-    date_from?: string;
-    date_to?: string;
+    start_date?: string;
+    end_date?: string;
   }): Promise<string[]> {
     return this.get<string[]>(
       LOGS_ENDPOINTS.API_REQUEST_TIMESTAMPS,
