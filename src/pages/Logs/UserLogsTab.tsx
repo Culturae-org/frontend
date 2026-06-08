@@ -76,8 +76,8 @@ const DEFAULT_COLS = 5;
 
 // TODO: translate action labels (i18n) — currently raw keys for admin technical use
 const USER_ACTION_OPTIONS = [
-  "login",
-  "admin_login",
+  "login_failed",
+  "register",
   "change_password",
   "profile_update",
   "public_id_regeneration",
