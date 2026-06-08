@@ -29,6 +29,7 @@ import {
 import { alpha, useTheme } from "@mui/material/styles";
 import {
   ArrowReset20Regular,
+  ArrowSync20Regular,
   Checkmark20Regular,
   CheckmarkCircle20Regular,
   Copy20Regular,
@@ -380,6 +381,7 @@ export default function UserDetailPage() {
   const [snapshots, setSnapshots] = useState<UserProgressionSnapshot[]>([]);
   const [progressionLoading, setProgressionLoading] = useState(true);
   const [progressionRange, setProgressionRange] = useState("30d");
+  const [refreshKey, setRefreshKey] = useState(0);
 
   const [tableGames, setTableGames] = useState<GameHistoryEntry[]>([]);
   const [tableTotal, setTableTotal] = useState(0);
@@ -436,7 +438,7 @@ export default function UserDetailPage() {
   useEffect(() => {
     if (!id) return;
     fetchProgression(id, progressionRange);
-  }, [id, progressionRange, fetchProgression]);
+  }, [id, progressionRange, fetchProgression, refreshKey]);
 
   useEffect(() => {
     if (!id) return;
@@ -459,7 +461,7 @@ export default function UserDetailPage() {
 
     setFriendRequestsLoading(true);
     friendsService.getFriendRequestsForUser(id, { limit: 200 }).then((res) => setFriendRequests(res.data)).catch(() => {}).finally(() => setFriendRequestsLoading(false));
-  }, [id]);
+  }, [id, refreshKey]);
 
   useEffect(() => {
     if (!id) return;
@@ -517,19 +519,30 @@ export default function UserDetailPage() {
   return (
     <Box sx={{ display: "flex", flexDirection: "column", gap: 2, flexGrow: 1, minHeight: 0 }}>
 
-      <Box sx={cardSx}>
-        <Container maxWidth="xl">
-          <Box sx={{ py: 1.25 }}>
-            <Breadcrumbs>
-              <Link underline="hover" color="text.secondary" variant="body2" onClick={() => navigate("/users")} sx={{ cursor: "pointer" }}>
-                Users
-              </Link>
-              <Typography variant="body2" color="text.primary" fontWeight={500} sx={{ fontFamily: "monospace" }}>
-                {id}
-              </Typography>
-            </Breadcrumbs>
-          </Box>
-        </Container>
+      <Box sx={{ display: "flex", alignItems: "stretch", gap: 1 }}>
+        <Box sx={{ ...cardSx, flexGrow: 1 }}>
+          <Container maxWidth="xl">
+            <Box sx={{ py: 1.25 }}>
+              <Breadcrumbs>
+                <Link underline="hover" color="text.secondary" variant="body2" onClick={() => navigate("/users")} sx={{ cursor: "pointer" }}>
+                  Users
+                </Link>
+                <Typography variant="body2" color="text.primary" fontWeight={500} sx={{ fontFamily: "monospace" }}>
+                  {id}
+                </Typography>
+              </Breadcrumbs>
+            </Box>
+          </Container>
+        </Box>
+        <Tooltip title="Refresh">
+          <IconButton
+            size="small"
+            onClick={() => setRefreshKey((k) => k + 1)}
+            sx={{ ...cardSx, px: 2, flexShrink: 0 }}
+          >
+            <ArrowSync20Regular style={{ fontSize: 16 }} />
+          </IconButton>
+        </Tooltip>
       </Box>
 
       <PageContainer>
