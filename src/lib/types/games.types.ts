@@ -28,6 +28,7 @@ export interface GamePlayer {
     rank?: string;
     level?: number;
     xp?: number;
+    language?: string;
   };
 }
 

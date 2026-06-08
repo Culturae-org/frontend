@@ -135,19 +135,30 @@ function cellFor(
       return <TableCell key={col} sx={sx}>{game.question_count ?? "—"}</TableCell>;
     case "category":
       return <TableCell key={col} sx={sx}>{game.category ?? "—"}</TableCell>;
-    case "language":
+    case "language": {
+      const langs = [...new Set(
+        (game.players ?? [])
+          .map((p) => p.user?.language)
+          .filter((l): l is string => !!l)
+      )];
       return (
         <TableCell key={col}>
-          {game.language ? (
-            <SquareChip
-              label={game.language.toUpperCase()}
-              size="small"
-              variant="outlined"
-              sx={{ height: 20, fontSize: "0.75rem" }}
-            />
+          {langs.length > 0 ? (
+            <Stack direction="row" spacing={0.5}>
+              {langs.map((l) => (
+                <SquareChip
+                  key={l}
+                  label={l.toUpperCase()}
+                  size="small"
+                  variant="outlined"
+                  sx={{ height: 20, fontSize: "0.75rem" }}
+                />
+              ))}
+            </Stack>
           ) : "—"}
         </TableCell>
       );
+    }
     case "flag_variant":
       return <TableCell key={col} sx={sx}>{game.flag_variant ?? "—"}</TableCell>;
     case "created_at":
