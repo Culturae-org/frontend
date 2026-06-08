@@ -27,9 +27,10 @@ interface LogFilterPopoverProps {
   onApply: (f: LogFilters) => void;
   actionOptions?: string[];
   resourceOptions?: string[];
+  width?: number;
 }
 
-export default function LogFilterPopover({ anchorEl, open, onClose, filters, onApply, actionOptions = [], resourceOptions = [] }: LogFilterPopoverProps) {
+export default function LogFilterPopover({ anchorEl, open, onClose, filters, onApply, actionOptions = [], resourceOptions = [], width = 280 }: LogFilterPopoverProps) {
   const { t } = useTranslation("dashboard");
   const [local, setLocal] = useState<LogFilters>(filters);
 
@@ -56,7 +57,7 @@ export default function LogFilterPopover({ anchorEl, open, onClose, filters, onA
       onClose={onClose}
       anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
       transformOrigin={{ vertical: "top", horizontal: "left" }}
-      slotProps={{ paper: { sx: { width: 280, p: 2 } } }}
+      slotProps={{ paper: { sx: { width, p: 2 } } }}
     >
       <Typography variant="subtitle2" fontWeight={600} sx={{ mb: 2 }}>
         {t("users.filter.title")}

@@ -281,13 +281,7 @@ export default function AdminLogsTab() {
               margin={{ right: 120 }}
               slotProps={{
                 legend: {
-                  direction: "column",
-                  position: { vertical: "middle", horizontal: "right" },
-                  padding: 0,
-                  itemMarkWidth: 10,
-                  itemMarkHeight: 10,
-                  markGap: 6,
-                  itemGap: 6,
+                  position: { vertical: "middle", horizontal: "end" },
                 },
               }}
               sx={{
@@ -472,6 +466,7 @@ export default function AdminLogsTab() {
         onApply={applyFilters}
         actionOptions={ADMIN_ACTION_OPTIONS}
         resourceOptions={resourceOptions}
+        width={340}
       />
       <LogColumnTogglePopover
         anchorEl={columnAnchorEl}
