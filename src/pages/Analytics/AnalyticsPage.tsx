@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import {
   Alert,
   Box,
-  Container,
   IconButton,
   Skeleton,
   Stack,
@@ -132,7 +131,6 @@ export default function AnalyticsPage() {
 
   return (
     <PageContainer plain>
-      <Container maxWidth="xl">
         {/* Header */}
         <PageHeader
           title={t("analytics.title")}
@@ -295,7 +293,6 @@ export default function AnalyticsPage() {
           </Stack>
         </BorderedCard>
 
-      </Container>
     </PageContainer>
   );
 }
