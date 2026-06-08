@@ -25,10 +25,11 @@ interface LogFilterPopoverProps {
   onClose: () => void;
   filters: LogFilters;
   onApply: (f: LogFilters) => void;
+  actionOptions?: string[];
   resourceOptions?: string[];
 }
 
-export default function LogFilterPopover({ anchorEl, open, onClose, filters, onApply, resourceOptions = [] }: LogFilterPopoverProps) {
+export default function LogFilterPopover({ anchorEl, open, onClose, filters, onApply, actionOptions = [], resourceOptions = [] }: LogFilterPopoverProps) {
   const { t } = useTranslation("dashboard");
   const [local, setLocal] = useState<LogFilters>(filters);
 
@@ -61,13 +62,29 @@ export default function LogFilterPopover({ anchorEl, open, onClose, filters, onA
         {t("users.filter.title")}
       </Typography>
       <Stack spacing={2}>
-        <TextField
-          size="small"
-          label={t("logs.filter.action")}
-          value={local.action}
-          onChange={(e) => setLocal((p) => ({ ...p, action: e.target.value }))}
-          placeholder="e.g. create_user"
-        />
+        {actionOptions.length > 0 ? (
+          <FormControl size="small">
+            <InputLabel>{t("logs.filter.action")}</InputLabel>
+            <Select
+              value={local.action}
+              label={t("logs.filter.action")}
+              onChange={(e) => setLocal((p) => ({ ...p, action: e.target.value }))}
+            >
+              <MenuItem value="">{t("users.filter.all")}</MenuItem>
+              {actionOptions.map((a) => (
+                <MenuItem key={a} value={a}>{a}</MenuItem>
+              ))}
+            </Select>
+          </FormControl>
+        ) : (
+          <TextField
+            size="small"
+            label={t("logs.filter.action")}
+            value={local.action}
+            onChange={(e) => setLocal((p) => ({ ...p, action: e.target.value }))}
+            placeholder="e.g. create_user"
+          />
+        )}
         {resourceOptions.length > 0 ? (
           <FormControl size="small">
             <InputLabel>{t("logs.filter.resource")}</InputLabel>

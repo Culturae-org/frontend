@@ -43,6 +43,63 @@ import { SecondaryButton, BorderedCard } from "@/components/Common/StyledCompone
 import LogFilterPopover from "./LogFilterPopover";
 import LogColumnTogglePopover, { type LogColumnKey } from "./LogColumnTogglePopover";
 
+// TODO: translate action labels (i18n) — currently raw keys for admin technical use
+const ADMIN_ACTION_OPTIONS = [
+  "user_create",
+  "user_update",
+  "user_password_update",
+  "user_delete",
+  "user_deactivate",
+  "user_status_update",
+  "user_ban",
+  "user_unban",
+  "user_regenerate_public_id",
+  "avatar_upload",
+  "avatar_delete",
+  "delete_game",
+  "archive_game",
+  "unarchive_game",
+  "cancel_game",
+  "delete_game_invite",
+  "cancel_game_invite",
+  "cleanup_abandoned_games",
+  "run_game_maintenance",
+  "game_template_create",
+  "game_template_update",
+  "game_template_delete",
+  "game_template_seed_defaults",
+  "question_create",
+  "question_update",
+  "question_delete",
+  "questions_export",
+  "questions_export_clean",
+  "dataset_create",
+  "dataset_update",
+  "dataset_delete",
+  "dataset_import",
+  "dataset_set_default",
+  "dataset_update_stats",
+  "geography_country_update",
+  "geography_continent_update",
+  "geography_region_update",
+  "geography_dataset_import",
+  "geography_dataset_delete",
+  "geography_dataset_set_default",
+  "report_update_status",
+  "set_maintenance",
+  "clear_cache",
+  "update_auth_config",
+  "update_avatar_config",
+  "update_elo_config",
+  "update_game_config",
+  "update_game_countdown",
+  "update_rate_limit",
+  "update_system_config",
+  "update_websocket_config",
+  "update_xp_config",
+  "system",
+];
+
 function truncate(s: string, max = 32) {
   return s.length > max ? s.slice(0, max) + "…" : s;
 }
@@ -413,6 +470,7 @@ export default function AdminLogsTab() {
         onClose={() => setFilterAnchorEl(null)}
         filters={filters}
         onApply={applyFilters}
+        actionOptions={ADMIN_ACTION_OPTIONS}
         resourceOptions={resourceOptions}
       />
       <LogColumnTogglePopover

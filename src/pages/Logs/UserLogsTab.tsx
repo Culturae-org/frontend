@@ -74,6 +74,35 @@ function RowSkeleton({ colCount }: { colCount: number }) {
 
 const DEFAULT_COLS = 5;
 
+// TODO: translate action labels (i18n) — currently raw keys for admin technical use
+const USER_ACTION_OPTIONS = [
+  "login",
+  "admin_login",
+  "change_password",
+  "profile_update",
+  "public_id_regeneration",
+  "delete_account",
+  "create_game",
+  "join_game",
+  "join_game_by_code",
+  "start_game",
+  "leave_game",
+  "cancel_game",
+  "invite_to_game",
+  "accept_game_invite",
+  "reject_game_invite",
+  "send_friend_request",
+  "accept_friend_request",
+  "reject_friend_request",
+  "cancel_friend_request",
+  "block_friend_request",
+  "remove_friend",
+  "block_user",
+  "unblock_user",
+  "avatar_upload",
+  "avatar_delete",
+];
+
 export default function UserLogsTab() {
   const { t } = useTranslation("dashboard");
   const theme = useTheme();
@@ -343,6 +372,7 @@ export default function UserLogsTab() {
         onClose={() => setFilterAnchorEl(null)}
         filters={filters}
         onApply={applyFilters}
+        actionOptions={USER_ACTION_OPTIONS}
         resourceOptions={resourceOptions}
       />
       <LogColumnTogglePopover
