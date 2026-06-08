@@ -784,6 +784,18 @@
       "gameStarted": "Game started",
       "gameCompleted": "Game completed",
       "gameCancelled": "Game cancelled"
+    },
+    "matchmaking": {
+      "title": "Matchmaking Queue",
+      "totalPlayers": "{{count}} players in queue",
+      "noPlayers": "No players in queue",
+      "clearQueue": "Clear",
+      "clearTitle": "Clear {{mode}} queue",
+      "clearConfirm": "Remove all players from the {{mode}} matchmaking queue?",
+      "clearSuccess": "Queue cleared",
+      "clearError": "Failed to clear queue",
+      "players": "{{count}} players",
+      "loadError": "Failed to load queue stats"
     }
   }
 }

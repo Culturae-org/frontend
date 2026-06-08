@@ -784,6 +784,18 @@
       "gameStarted": "Partie démarrée",
       "gameCompleted": "Partie terminée",
       "gameCancelled": "Partie annulée"
+    },
+    "matchmaking": {
+      "title": "File d'attente matchmaking",
+      "totalPlayers": "{{count}} joueurs en attente",
+      "noPlayers": "Aucun joueur en attente",
+      "clearQueue": "Vider",
+      "clearTitle": "Vider la file {{mode}}",
+      "clearConfirm": "Retirer tous les joueurs de la file matchmaking {{mode}} ?",
+      "clearSuccess": "File vidée",
+      "clearError": "Impossible de vider la file",
+      "players": "{{count}} joueurs",
+      "loadError": "Impossible de charger les stats de file"
     }
   }
 }

@@ -51,10 +51,7 @@ export interface UserGameHistory {
   total: number;
 }
 
-export interface MatchmakingQueueStats {
-  total_players: number;
-  queues: Record<string, number>;
-}
+export type MatchmakingQueueStats = Record<string, number>;
 
 export interface AdminGame {
   id: string;

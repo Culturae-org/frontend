@@ -1,4 +1,4 @@
-import { GAMES_ENDPOINTS } from "../api/endpoints";
+import { GAMES_ENDPOINTS, MATCHMAKING_ENDPOINTS } from "../api/endpoints";
 import type { PaginatedResponse } from "../types/api.types";
 import type {
   AdminGame,
@@ -12,6 +12,7 @@ import type {
   GamePlayer,
   GameQuestion,
   GameStats,
+  MatchmakingQueueStats,
 } from "../types/games.types";
 import { BaseService } from "./base.service";
 
@@ -129,6 +130,14 @@ class GamesService extends BaseService {
 
   async cancelInvite(id: string): Promise<void> {
     return this.post<void>(GAMES_ENDPOINTS.CANCEL_INVITE(id));
+  }
+
+  async getMatchmakingStats(): Promise<MatchmakingQueueStats> {
+    return this.get<MatchmakingQueueStats>(MATCHMAKING_ENDPOINTS.STATS);
+  }
+
+  async clearMatchmakingQueue(mode: string): Promise<void> {
+    return this.delete<void>(MATCHMAKING_ENDPOINTS.CLEAR_QUEUE(mode));
   }
 }
 

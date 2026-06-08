@@ -783,6 +783,18 @@
       "gameStarted": "Partida iniciada",
       "gameCompleted": "Partida completada",
       "gameCancelled": "Partida cancelada"
+    },
+    "matchmaking": {
+      "title": "Cola de emparejamiento",
+      "totalPlayers": "{{count}} jugadores en cola",
+      "noPlayers": "Sin jugadores en cola",
+      "clearQueue": "Limpiar",
+      "clearTitle": "Limpiar cola {{mode}}",
+      "clearConfirm": "¿Eliminar todos los jugadores de la cola de emparejamiento {{mode}}?",
+      "clearSuccess": "Cola limpiada",
+      "clearError": "Error al limpiar la cola",
+      "players": "{{count}} jugadores",
+      "loadError": "No se pudieron cargar las estadísticas de cola"
     }
   }
 }

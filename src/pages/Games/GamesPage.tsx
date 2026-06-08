@@ -47,6 +47,7 @@ import PageContainer from "@/components/Common/PageContainer";
 import PageHeader from "@/components/Common/PageHeader";
 import GameFilterPopover, { type GameFilters } from "./GameFilterPopover";
 import GameColumnTogglePopover, { type GameColumnKey, OPTIONAL_GAME_COLUMNS } from "./GameColumnTogglePopover";
+import MatchmakingPanel from "./MatchmakingPanel";
 
 function ModeChip({ mode }: { mode: string }) {
   const { t } = useTranslation("dashboard");
@@ -378,6 +379,8 @@ export default function GamesPage() {
         title={t("nav.games")}
         subtitle={totalCount > 0 ? t("games.subtitle", { count: totalCount }) : undefined}
       />
+
+      <MatchmakingPanel />
 
       <Stack direction="row" spacing={1} sx={{ mb: 2 }} alignItems="center" flexWrap="wrap" useFlexGap>
         <TextField
