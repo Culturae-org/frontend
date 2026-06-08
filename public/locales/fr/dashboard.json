@@ -797,5 +797,43 @@
       "players": "{{count}} joueurs",
       "loadError": "Impossible de charger les stats de file"
     }
+  },
+  "invites": {
+    "title": "Invitations de jeu",
+    "subtitle": "{{count}} invitations",
+    "empty": "Aucune invitation trouvée",
+    "columns": {
+      "from": "Expéditeur",
+      "to": "Destinataire",
+      "game": "Partie",
+      "status": "Statut",
+      "createdAt": "Date"
+    },
+    "status": {
+      "pending": "En attente",
+      "accepted": "Acceptée",
+      "rejected": "Refusée",
+      "cancelled": "Annulée",
+      "expired": "Expirée"
+    },
+    "filter": {
+      "all": "Tous les statuts"
+    },
+    "toolbar": {
+      "refresh": "Actualiser",
+      "backToGames": "Retour aux parties"
+    },
+    "actions": {
+      "cancel": "Annuler l'invitation",
+      "cancelTitle": "Annuler l'invitation",
+      "cancelConfirm": "Annuler cette invitation ? Le destinataire ne pourra plus rejoindre.",
+      "cancelSuccess": "Invitation annulée",
+      "cancelError": "Impossible d'annuler l'invitation",
+      "delete": "Supprimer",
+      "deleteTitle": "Supprimer l'invitation",
+      "deleteConfirm": "Supprimer définitivement cette invitation ?",
+      "deleteSuccess": "Invitation supprimée",
+      "deleteError": "Impossible de supprimer l'invitation"
+    }
   }
 }

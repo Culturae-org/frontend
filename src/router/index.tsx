@@ -29,6 +29,7 @@ const protectedPages: RouteObject[] = [
   { path: "questions/:id", lazy: lazy(() => import("@/pages/Questions/QuestionEditPage")) },
   { path: "reports", lazy: lazy(() => import("@/pages/Reports/ReportsPage")) },
   { path: "games", lazy: lazy(() => import("@/pages/Games/GamesPage")) },
+  { path: "games/invites", lazy: lazy(() => import("@/pages/Games/GameInvitesPage")) },
   { path: "games/:id", lazy: lazy(() => import("@/pages/Games/GameDetailPage")) },
   { path: "logs", lazy: lazy(() => import("@/pages/Logs/LogsPage")) },
   { path: "api-explorer", lazy: lazy(() => import("@/pages/ApiExplorer/ApiExplorerPage")) },

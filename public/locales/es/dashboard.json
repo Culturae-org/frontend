@@ -796,5 +796,43 @@
       "players": "{{count}} jugadores",
       "loadError": "No se pudieron cargar las estadísticas de cola"
     }
+  },
+  "invites": {
+    "title": "Invitaciones de juego",
+    "subtitle": "{{count}} invitaciones",
+    "empty": "No se encontraron invitaciones",
+    "columns": {
+      "from": "Remitente",
+      "to": "Destinatario",
+      "game": "Partida",
+      "status": "Estado",
+      "createdAt": "Fecha"
+    },
+    "status": {
+      "pending": "Pendiente",
+      "accepted": "Aceptada",
+      "rejected": "Rechazada",
+      "cancelled": "Cancelada",
+      "expired": "Expirada"
+    },
+    "filter": {
+      "all": "Todos los estados"
+    },
+    "toolbar": {
+      "refresh": "Actualizar",
+      "backToGames": "Volver a partidas"
+    },
+    "actions": {
+      "cancel": "Cancelar invitación",
+      "cancelTitle": "Cancelar invitación",
+      "cancelConfirm": "¿Cancelar esta invitación? El destinatario no podrá unirse.",
+      "cancelSuccess": "Invitación cancelada",
+      "cancelError": "Error al cancelar la invitación",
+      "delete": "Eliminar",
+      "deleteTitle": "Eliminar invitación",
+      "deleteConfirm": "¿Eliminar esta invitación permanentemente?",
+      "deleteSuccess": "Invitación eliminada",
+      "deleteError": "Error al eliminar la invitación"
+    }
   }
 }

@@ -24,6 +24,7 @@ import {
   ArrowSync20Regular,
   Dismiss20Regular,
   Filter20Regular,
+  MailTemplate20Regular,
   Search20Regular,
   TextColumnThree20Regular,
   Delete20Regular,
@@ -443,6 +444,14 @@ export default function GamesPage() {
         </SecondaryButton>
 
         <Box sx={{ flexGrow: 1 }} />
+
+        <SecondaryButton
+          variant="contained"
+          startIcon={<MailTemplate20Regular />}
+          onClick={() => navigate("/games/invites")}
+        >
+          {t("invites.title")}
+        </SecondaryButton>
 
         <SecondaryButton
           variant="contained"

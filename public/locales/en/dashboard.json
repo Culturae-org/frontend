@@ -797,5 +797,43 @@
       "players": "{{count}} players",
       "loadError": "Failed to load queue stats"
     }
+  },
+  "invites": {
+    "title": "Game Invitations",
+    "subtitle": "{{count}} invitations",
+    "empty": "No invitations found",
+    "columns": {
+      "from": "From",
+      "to": "To",
+      "game": "Game",
+      "status": "Status",
+      "createdAt": "Created at"
+    },
+    "status": {
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled",
+      "expired": "Expired"
+    },
+    "filter": {
+      "all": "All statuses"
+    },
+    "toolbar": {
+      "refresh": "Refresh",
+      "backToGames": "Back to games"
+    },
+    "actions": {
+      "cancel": "Cancel invitation",
+      "cancelTitle": "Cancel invitation",
+      "cancelConfirm": "Cancel this invitation? The recipient will no longer be able to join.",
+      "cancelSuccess": "Invitation cancelled",
+      "cancelError": "Failed to cancel invitation",
+      "delete": "Delete",
+      "deleteTitle": "Delete invitation",
+      "deleteConfirm": "Delete this invitation permanently? This action cannot be undone.",
+      "deleteSuccess": "Invitation deleted",
+      "deleteError": "Failed to delete invitation"
+    }
   }
 }
