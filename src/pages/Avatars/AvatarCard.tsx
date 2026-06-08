@@ -1,9 +1,13 @@
-import { alpha, Box, ButtonBase, Skeleton, styled, Tooltip, Typography } from "@mui/material";
-import React, { useMemo, useState } from "react";
+import { alpha, Box, ButtonBase, IconButton, Skeleton, styled, Tooltip, Typography } from "@mui/material";
+import CameraAltIcon from "@mui/icons-material/CameraAlt";
+import React, { useRef, useMemo, useState } from "react";
 import { AVATAR_ENDPOINTS } from "@/lib/api/endpoints";
 import { SquareChip } from "@/components/Common/StyledComponents";
 import { StatusChip } from "@/pages/Users/UserRow";
 import type { AdminUser } from "@/lib/types/user.types";
+import { AvatarCropperDialog } from "./AvatarCropperDialog";
+import { usersService } from "@/lib/services/users.service";
+import { enqueueSnackbar } from "notistack";
 
 const ROLE_COLORS: Record<string, "default" | "primary" | "warning" | "error"> = {
   administrator: "error",
@@ -73,6 +77,23 @@ const InfoBar = styled(Box)(({ theme }) => ({
   minHeight: 38,
 }));
 
+const UploadOverlay = styled(Box)(({ theme }) => ({
+  position: "absolute",
+  inset: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: alpha(theme.palette.common.black, 0.4),
+  opacity: 0,
+  transition: "opacity 150ms ease",
+  ".CardBase:hover &": {
+    opacity: 1,
+  },
+  "&:hover": {
+    opacity: 1,
+  },
+}));
+
 interface AvatarCardProps {
   user: AdminUser;
   onClick: (user: AdminUser) => void;
@@ -82,9 +103,18 @@ interface AvatarCardProps {
 export function AvatarCard({ user, onClick, onContextMenu }: AvatarCardProps) {
   const [imgLoaded, setImgLoaded] = useState(false);
   const [imgError, setImgError] = useState(false);
+  const [version, setVersion] = useState<number | undefined>(undefined);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const color = useMemo(() => stringToColor(user.username), [user.username]);
-  const showImage = user.has_avatar && !imgError;
+  const showImage = (user.has_avatar || version !== undefined) && !imgError;
+
+  const avatarSrc = useMemo(
+    () => AVATAR_ENDPOINTS.GET(user.id, version),
+    [user.id, version],
+  );
 
   const handleContextMenu = (e: React.MouseEvent) => {
     if (onContextMenu) {
@@ -93,71 +123,124 @@ export function AvatarCard({ user, onClick, onContextMenu }: AvatarCardProps) {
     }
   };
 
-  return (
-    <CardBase onClick={() => onClick(user)} onContextMenu={handleContextMenu}>
-      <AvatarArea>
-        {showImage && (
-          <AvatarImg
-            src={AVATAR_ENDPOINTS.GET(user.id)}
-            loaded={imgLoaded}
-            onLoad={() => setImgLoaded(true)}
-            onError={() => setImgError(true)}
-            alt={user.username}
-          />
-        )}
-        {showImage && !imgLoaded && (
-          <Skeleton
-            variant="rectangular"
-            sx={{ position: "absolute", inset: 0, height: "100%", width: "100%" }}
-          />
-        )}
-        {!showImage && (
-          <InitialsBg color={color}>
-            <Typography
-              sx={{ color: "#fff", fontWeight: 700, fontSize: "clamp(1.5rem, 5vw, 2.5rem)", userSelect: "none" }}
-            >
-              {user.username.charAt(0).toUpperCase()}
-            </Typography>
-          </InitialsBg>
-        )}
-        {user.is_online && (
-          <Box sx={{
-            position: "absolute",
-            bottom: 6,
-            right: 6,
-            width: 12,
-            height: 12,
-            borderRadius: "50%",
-            bgcolor: "success.main",
-            border: "2px solid",
-            borderColor: "background.paper",
-            zIndex: 1,
-          }} />
-        )}
-      </AvatarArea>
+  const handleUploadClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    fileInputRef.current?.click();
+  };
 
-      <InfoBar>
-        <Tooltip title={user.username} disableHoverListener={user.username.length <= 14}>
-          <Typography
-            variant="body2"
-            fontWeight={500}
-            sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1, textAlign: "left" }}
-          >
-            {user.username}
-          </Typography>
-        </Tooltip>
-        {user.account_status !== "active" ? (
-          <StatusChip status={user.account_status} />
-        ) : (
-          <SquareChip
-            size="small"
-            label={user.role}
-            color={ROLE_COLORS[user.role] ?? "default"}
-            sx={{ fontSize: "0.65rem", height: 18, flexShrink: 0 }}
-          />
-        )}
-      </InfoBar>
-    </CardBase>
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    setCropSrc(url);
+    e.target.value = "";
+  };
+
+  const handleCropConfirm = async (blob: Blob) => {
+    const file = new File([blob], "avatar.png", { type: "image/png" });
+    await usersService.uploadAvatar(user.id, file);
+    setVersion(Date.now());
+    setImgLoaded(false);
+    setImgError(false);
+    enqueueSnackbar("Avatar updated", { variant: "success" });
+  };
+
+  const handleCropClose = () => {
+    if (cropSrc) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
+  };
+
+  return (
+    <>
+      <CardBase className="CardBase" onClick={() => onClick(user)} onContextMenu={handleContextMenu}>
+        <AvatarArea>
+          {showImage && (
+            <AvatarImg
+              src={avatarSrc}
+              loaded={imgLoaded}
+              onLoad={() => setImgLoaded(true)}
+              onError={() => setImgError(true)}
+              alt={user.username}
+            />
+          )}
+          {showImage && !imgLoaded && (
+            <Skeleton
+              variant="rectangular"
+              sx={{ position: "absolute", inset: 0, height: "100%", width: "100%" }}
+            />
+          )}
+          {!showImage && (
+            <InitialsBg color={color}>
+              <Typography
+                sx={{ color: "#fff", fontWeight: 700, fontSize: "clamp(1.5rem, 5vw, 2.5rem)", userSelect: "none" }}
+              >
+                {user.username.charAt(0).toUpperCase()}
+              </Typography>
+            </InitialsBg>
+          )}
+          {user.is_online && (
+            <Box sx={{
+              position: "absolute",
+              bottom: 6,
+              right: 6,
+              width: 12,
+              height: 12,
+              borderRadius: "50%",
+              bgcolor: "success.main",
+              border: "2px solid",
+              borderColor: "background.paper",
+              zIndex: 1,
+            }} />
+          )}
+          <UploadOverlay>
+            <Tooltip title="Upload avatar">
+              <IconButton size="small" onClick={handleUploadClick} sx={{ color: "#fff" }}>
+                <CameraAltIcon fontSize="small" />
+              </IconButton>
+            </Tooltip>
+          </UploadOverlay>
+        </AvatarArea>
+
+        <InfoBar>
+          <Tooltip title={user.username} disableHoverListener={user.username.length <= 14}>
+            <Typography
+              variant="body2"
+              fontWeight={500}
+              sx={{ overflow: "hidden", textOverflow: "ellipsis", whiteSpace: "nowrap", flex: 1, textAlign: "left" }}
+            >
+              {user.username}
+            </Typography>
+          </Tooltip>
+          {user.account_status !== "active" ? (
+            <StatusChip status={user.account_status} />
+          ) : (
+            <SquareChip
+              size="small"
+              label={user.role}
+              color={ROLE_COLORS[user.role] ?? "default"}
+              sx={{ fontSize: "0.65rem", height: 18, flexShrink: 0 }}
+            />
+          )}
+        </InfoBar>
+      </CardBase>
+
+      <input
+        ref={fileInputRef}
+        type="file"
+        accept="image/png,image/jpeg"
+        style={{ display: "none" }}
+        onChange={handleFileChange}
+      />
+
+      {cropSrc && (
+        <AvatarCropperDialog
+          open={!!cropSrc}
+          src={cropSrc}
+          onClose={handleCropClose}
+          onConfirm={handleCropConfirm}
+        />
+      )}
+    </>
   );
 }
 

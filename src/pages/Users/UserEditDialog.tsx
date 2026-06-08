@@ -23,6 +23,7 @@ import {
 } from "@mui/material";
 import { Camera20Regular, Delete20Regular, Dismiss24Regular } from "@fluentui/react-icons";
 import { useEffect, useRef, useState } from "react";
+import { AvatarCropperDialog } from "@/pages/Avatars/AvatarCropperDialog";
 import { useTranslation } from "react-i18next";
 import { useDateFormat } from "@/hooks/useDateFormat";
 import { enqueueSnackbar } from "notistack";
@@ -92,6 +93,7 @@ export default function UserEditDialog({ userId, open, onClose, onUpdated }: Use
   const [hasAvatar, setHasAvatar] = useState(false);
   const [avatarTs, setAvatarTs] = useState(Date.now());
   const [uploadingAvatar, setUploadingAvatar] = useState(false);
+  const [cropSrc, setCropSrc] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -162,11 +164,19 @@ export default function UserEditDialog({ userId, open, onClose, onUpdated }: Use
     }
   };
 
-  const handleAvatarUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAvatarUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file || !userId) return;
+    const url = URL.createObjectURL(file);
+    setCropSrc(url);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  };
+
+  const handleCropConfirm = async (blob: Blob) => {
+    if (!userId) return;
     setUploadingAvatar(true);
     try {
+      const file = new File([blob], "avatar.png", { type: "image/png" });
       await usersService.uploadAvatar(userId, file);
       setHasAvatar(true);
       setAvatarTs(Date.now());
@@ -178,8 +188,12 @@ export default function UserEditDialog({ userId, open, onClose, onUpdated }: Use
       enqueueSnackbar(err instanceof Error ? err.message : t("users.edit.avatar.uploadError"), { variant: "error" });
     } finally {
       setUploadingAvatar(false);
-      if (fileInputRef.current) fileInputRef.current.value = "";
     }
+  };
+
+  const handleCropClose = () => {
+    if (cropSrc) URL.revokeObjectURL(cropSrc);
+    setCropSrc(null);
   };
 
   const handleAvatarDelete = async () => {
@@ -207,6 +221,7 @@ export default function UserEditDialog({ userId, open, onClose, onUpdated }: Use
     setForm((p) => p && { ...p, [key]: checked });
 
   return (
+    <>
     <Dialog open={open} onClose={onClose} maxWidth="md" fullWidth>
       <DialogTitle sx={{ display: "flex", alignItems: "center", justifyContent: "space-between", pr: 1.5 }}>
         <Typography component="span" variant="subtitle1" fontWeight={600}>{t("users.edit.title")}</Typography>
@@ -395,5 +410,15 @@ export default function UserEditDialog({ userId, open, onClose, onUpdated }: Use
         </DialogActions>
       </Collapse>
     </Dialog>
+
+    {cropSrc && (
+      <AvatarCropperDialog
+        open={!!cropSrc}
+        src={cropSrc}
+        onClose={handleCropClose}
+        onConfirm={handleCropConfirm}
+      />
+    )}
+    </>
   );
 }

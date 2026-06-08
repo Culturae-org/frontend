@@ -33,6 +33,15 @@ export default function AvatarTab() {
             helperText="Maximum avatar file size. Default: 5"
           />
         </SettingForm>
+        <SettingForm title="Max Width (px)">
+          <TextField
+            type="number"
+            size="small"
+            value={values.max_width ?? 200}
+            onChange={(e) => updateProperty("max_width", Number(e.target.value))}
+            helperText="Avatar will be resized to this square dimension. Default: 200"
+          />
+        </SettingForm>
         <SettingForm title="Allowed MIME Types">
           <Stack spacing={1}>
             <Stack direction="row" spacing={0.5} flexWrap="wrap" useFlexGap>

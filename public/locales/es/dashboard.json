@@ -372,7 +372,11 @@
         "updated": "Avatar actualizado",
         "removed": "Avatar eliminado",
         "uploadError": "Error al cargar el avatar",
-        "removeError": "Error al eliminar el avatar"
+        "removeError": "Error al eliminar el avatar",
+        "cropTitle": "Recortar avatar",
+        "cropSave": "Guardar",
+        "cropSaving": "Subiendo…",
+        "cropCancel": "Cancelar"
       },
       "revert": "Revertir",
       "save": "Guardar",

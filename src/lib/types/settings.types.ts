@@ -52,6 +52,7 @@ export interface AvatarConfig extends Record<string, unknown> {
   max_file_size_mb: number;
   allowed_mime_types: string[];
   allowed_extensions: string[];
+  max_width: number;
 }
 
 export interface SystemConfig extends Record<string, unknown> {

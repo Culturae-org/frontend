@@ -372,7 +372,11 @@
         "updated": "Avatar mis à jour",
         "removed": "Avatar supprimé",
         "uploadError": "Échec du téléversement de l'avatar",
-        "removeError": "Échec de la suppression de l'avatar"
+        "removeError": "Échec de la suppression de l'avatar",
+        "cropTitle": "Recadrer l'avatar",
+        "cropSave": "Enregistrer",
+        "cropSaving": "Téléversement…",
+        "cropCancel": "Annuler"
       },
       "revert": "Annuler",
       "save": "Enregistrer",

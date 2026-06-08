@@ -372,7 +372,11 @@
         "updated": "Avatar updated",
         "removed": "Avatar removed",
         "uploadError": "Failed to upload avatar",
-        "removeError": "Failed to remove avatar"
+        "removeError": "Failed to remove avatar",
+        "cropTitle": "Crop Avatar",
+        "cropSave": "Save",
+        "cropSaving": "Uploading…",
+        "cropCancel": "Cancel"
       },
       "revert": "Revert",
       "save": "Save",

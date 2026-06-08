@@ -131,6 +131,7 @@ const AVATAR_DEFAULTS: AvatarConfig = {
   max_file_size_mb: 5,
   allowed_mime_types: ["image/jpeg", "image/png"],
   allowed_extensions: [".png", ".jpeg", ".jpg"],
+  max_width: 200,
 };
 
 const MAINTENANCE_DEFAULTS: MaintenanceStatus = {
