@@ -166,7 +166,7 @@ class UsersService extends BaseService {
 
   async getUserProgression(
     userId: string,
-    params?: { limit?: number; page?: number },
+    params?: { limit?: number; page?: number; start_date?: string; end_date?: string },
   ): Promise<PaginatedResponse<UserProgressionSnapshot>> {
     return this.getPaginated<UserProgressionSnapshot>(
       USERS_ENDPOINTS.PROGRESSION(userId),

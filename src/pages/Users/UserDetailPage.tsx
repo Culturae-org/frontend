@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router";
 import {
   Avatar,
@@ -68,6 +68,7 @@ import { enqueueSnackbar } from "notistack";
 import PageContainer from "@/components/Common/PageContainer";
 import { useConfirm } from "@/components/Common/ConfirmDialog";
 import { StyledTabs, StyledTab } from "@/components/Common/ResponsiveTabs";
+import { TimeRangeSelector } from "@/pages/Analytics/components/TimeRangeSelector";
 import UserActivityHeatmap from "./UserActivityHeatmap";
 import { StatusChip, RoleChip } from "./UserRow";
 
@@ -352,6 +353,16 @@ function XpProgressionChart({ snapshots }: { snapshots: UserProgressionSnapshot[
   );
 }
 
+function rangeToStartDate(range: string): string | null {
+  if (range === "all") return null;
+  const days: Record<string, number> = { "7d": 7, "30d": 30, "90d": 90, "1y": 365 };
+  const d = days[range];
+  if (!d) return null;
+  const date = new Date();
+  date.setDate(date.getDate() - d);
+  return date.toISOString().slice(0, 10);
+}
+
 export default function UserDetailPage() {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
@@ -368,6 +379,7 @@ export default function UserDetailPage() {
 
   const [snapshots, setSnapshots] = useState<UserProgressionSnapshot[]>([]);
   const [progressionLoading, setProgressionLoading] = useState(true);
+  const [progressionRange, setProgressionRange] = useState("30d");
 
   const [tableGames, setTableGames] = useState<GameHistoryEntry[]>([]);
   const [tableTotal, setTableTotal] = useState(0);
@@ -412,6 +424,20 @@ export default function UserDetailPage() {
   const [friendRequestsLoading, setFriendRequestsLoading] = useState(true);
   const [friendsTab, setFriendsTab] = useState(0);
 
+  const fetchProgression = useCallback((userId: string, range: string) => {
+    const startDate = rangeToStartDate(range);
+    setProgressionLoading(true);
+    usersService.getUserProgression(userId, {
+      limit: 500,
+      ...(startDate && { start_date: startDate }),
+    }).then((res) => setSnapshots(res.data)).catch(() => {}).finally(() => setProgressionLoading(false));
+  }, []);
+
+  useEffect(() => {
+    if (!id) return;
+    fetchProgression(id, progressionRange);
+  }, [id, progressionRange, fetchProgression]);
+
   useEffect(() => {
     if (!id) return;
     setLoading(true);
@@ -419,9 +445,6 @@ export default function UserDetailPage() {
 
     setGamesLoading(true);
     gamesService.getUserGameHistory(id, { limit: 500 }).then((res) => setGameHistory(res.data)).catch(() => {}).finally(() => setGamesLoading(false));
-
-    setProgressionLoading(true);
-    usersService.getUserProgression(id, { limit: 500 }).then((res) => setSnapshots(res.data)).catch(() => {}).finally(() => setProgressionLoading(false));
 
     setLogsLoading(true);
     logsService.getUserActionLogs(id, { limit: 500 }).then((res) => setActionLogs(res.data)).catch(() => {}).finally(() => setLogsLoading(false));
@@ -720,6 +743,15 @@ export default function UserDetailPage() {
                 </Paper>
               </Grid2>
             </Grid2>
+
+            <Stack direction="row" alignItems="center" justifyContent="space-between">
+              <SectionLabel>Progression</SectionLabel>
+              <TimeRangeSelector
+                value={progressionRange}
+                onChange={setProgressionRange}
+                options={["7d", "30d", "90d", "1y", "all"]}
+              />
+            </Stack>
 
             <Grid2 container spacing={3}>
               <Grid2 size={{ xs: 12, md: 6 }}>

@@ -1,4 +1,4 @@
-export type TimeRange = "12h" | "1d" | "7d" | "30d" | "90d" | "1y";
+export type TimeRange = "12h" | "1d" | "7d" | "30d" | "90d" | "1y" | "all";
 export type ApiTimeRange = "1h" | "6h" | "12h" | "1d" | "7d" | "30d";
 
 export interface TimeSeriesData {
